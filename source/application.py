@@ -21,7 +21,7 @@ def cardata():
     # # https://docs.python.org/3.7/library/stdtypes.html?highlight=title#str.title
     # query = query.title()
 
-    rows = engine.execute("SELECT * FROM car_data WHERE car_id =1")
+    rows = engine.execute("SELECT * FROM car_data WHERE car_id ={}".format(request.args.get("carid")))
                     #   {"query":request.args.get("carid")})
 
 
