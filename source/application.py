@@ -47,7 +47,7 @@ def getmap():
     tooltip =  'Current Location'
     folium.Marker(location, popup='<strong>Location One </strong>', tooltip = tooltip, icon = current_location_icon).add_to(m)
 
-    map_search = requests.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=electric+car+charging+stations+in+delhi&key=AIzaSyCoOv22Ipjh2mNjjpASLlhE47jcMNfWG-Q")
+    map_search = requests.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=NDMC+delta+EV+chargers+in+delhi&key=AIzaSyCoOv22Ipjh2mNjjpASLlhE47jcMNfWG-Q")
     result = map_search.json()
     result_length = len(result)
     all_results = []
