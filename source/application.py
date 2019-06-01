@@ -1,5 +1,7 @@
 from flask import Flask, session, request, render_template, redirect, jsonify, flash
 from sqlalchemy import create_engine
+import requests
+import folium
 
 app = Flask(__name__)
 
@@ -29,3 +31,35 @@ def cardata():
     # result = dict(rows)
 
     # return jsonify(result)                  
+
+
+@app.route("/createmap", methods=["GET"])
+def getmap():
+    latitude = request.args.get("lat")
+    longitude = request.args.get("long")
+    location = [latitude, longitude]
+    # results = map_search[0]
+    # return jsonify({'result': [dict(result) for result in results]})
+    m = folium.Map(location=location, zoom_start=11)
+    
+    current_location_icon = folium.features.CustomIcon('current.png', icon_size=(20,30))
+
+    tooltip =  'Current Location'
+    folium.Marker(location, popup='<strong>Location One </strong>', tooltip = tooltip, icon = current_location_icon).add_to(m)
+
+    map_search = requests.get("https://maps.googleapis.com/maps/api/place/textsearch/json?query=electric+car+charging+stations+in+delhi&key=AIzaSyCoOv22Ipjh2mNjjpASLlhE47jcMNfWG-Q")
+    result = map_search.json()
+    result_length = len(result)
+    all_results = []
+    for i in range(result_length):
+        lat = result['results'][i]['geometry']['location']['lat']
+        longi = result['results'][i]['geometry']['location']['lng']
+        loc1 = [lat, longi]
+        all_results.append(loc1)
+        folium.Marker(loc1, popup='<strong>Location One </strong>', tooltip = tooltip, icon=folium.Icon(color='crimson')).add_to(m)
+        
+
+
+    map_search.json()
+    return m._repr_html_()
+
