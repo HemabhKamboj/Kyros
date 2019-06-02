@@ -1,0 +1,25 @@
+footer{
+  height:57%;
+  background-color: #363636;
+}
+
+footer>ul{
+  list-style: none;
+  padding-left: 0;
+}
+
+.footer-item{
+  height:100px;
+  background-color: #fff;
+  justify-content: center;
+  border:1px grey solid;
+  margin: 10px;
+  border-radius: 20px;
+}
+
+.navbar{
+  background-color:#959595;
+}
+.navbar>a:hover{
+  color:white;
+}
