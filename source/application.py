@@ -40,7 +40,7 @@ def getmap():
     location = [latitude, longitude]
     # results = map_search[0]
     # return jsonify({'result': [dict(result) for result in results]})
-    m = folium.Map(location=location, zoom_start=10)
+    m = folium.Map(location=location, zoom_start=9)
      
     current_location_icon = folium.features.CustomIcon('current.png', icon_size=(20,30))
 
